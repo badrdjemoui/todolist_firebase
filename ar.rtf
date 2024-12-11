@@ -1,0 +1,175 @@
+{\rtf1\fbidis\ansi\ansicpg1252\deff0\nouicompat\deflang1036{\fonttbl{\f0\fnil\fcharset178 Calibri;}{\f1\fnil\fcharset0 Calibri;}}
+{\*\generator Riched20 10.0.22000}\viewkind4\uc1 
+\pard\ltrpar\sa200\sl276\slmult1\qc\f0\rtlch\fs22\lang5121\'c5\'e1\'ed\'df \'d4\'d1\'cd \'e1\'df\'e6\'cf\f1\ltrch\lang3081  main.dart \f0\rtlch\lang5121\'e6\f1\ltrch\lang3081  todo_screen.dart \f0\rtlch\lang5121\'e3\'da \'c7\'e1\'ca\'da\'e1\'ed\'de\'c7\'ca \'c8\'c7\'e1\'e1\'db\'c9 \'c7\'e1\'da\'d1\'c8\'ed\'c9\f1\ltrch\lang3081 :\par
+
+\pard\ltrpar\sa200\sl276\slmult1\par
+1. main.dart:\par
+dart\par
+Copier le code\par
+// \f0\rtlch\lang5121\'c7\'d3\'ca\'ed\'d1\'c7\'cf \'c7\'e1\'e3\'df\'ca\'c8\'c7\'ca \'c7\'e1\'e1\'c7\'d2\'e3\'c9\f1\ltrch\lang3081\par
+import 'package:flutter/material.dart'; // \f0\rtlch\lang5121\'e1\'e6\'c7\'cc\'e5\'c9 \'c7\'e1\'e3\'d3\'ca\'ce\'cf\'e3\f1\ltrch\lang3081\par
+import 'package:firebase_core/firebase_core.dart'; // \f0\rtlch\lang5121\'e1\'ca\'e5\'ed\'c6\'c9\f1\ltrch\lang3081  Firebase\par
+import 'screens/todo_screen.dart'; // \f0\rtlch\lang5121\'c7\'d3\'ca\'ed\'d1\'c7\'cf \'d4\'c7\'d4\'c9 \'c7\'e1\'e3\'e5\'c7\'e3 \'e1\'c5\'cf\'c7\'d1\'c9 \'c7\'e1\'e3\'e5\'c7\'e3\f1\ltrch\lang3081\par
+\par
+// \f0\rtlch\lang5121\'c7\'e1\'cf\'c7\'e1\'c9 \'c7\'e1\'d1\'c6\'ed\'d3\'ed\'c9 \'c7\'e1\'ca\'ed \'ca\'c8\'cf\'c3 \'c7\'e1\'ca\'d8\'c8\'ed\'de\f1\ltrch\lang3081\par
+void main() async \{\par
+  // \f0\rtlch\lang5121\'c7\'e1\'ca\'c3\'df\'cf \'e3\'e4 \'c3\'e4 \'df\'e1 \'d4\'ed\'c1 \'dd\'ed \'c8\'ed\'c6\'c9\f1\ltrch\lang3081  Flutter \f0\rtlch\lang5121\'cc\'c7\'e5\'d2 \'de\'c8\'e1 \'ca\'e4\'dd\'ed\'d0 \'c3\'ed \'d4\'ed\'c1\f1\ltrch\lang3081\par
+  WidgetsFlutterBinding.ensureInitialized();\par
+\par
+  // \f0\rtlch\lang5121\'ca\'e5\'ed\'c6\'c9\f1\ltrch\lang3081  Firebase\par
+  await Firebase.initializeApp();\par
+\par
+  // \f0\rtlch\lang5121\'ca\'d4\'db\'ed\'e1 \'c7\'e1\'ca\'d8\'c8\'ed\'de \'c8\'da\'cf \'ca\'e5\'ed\'c6\'c9\f1\ltrch\lang3081  Firebase\par
+  runApp(MyApp());\par
+\}\par
+\par
+// \f0\rtlch\lang5121\'dd\'c6\'c9\f1\ltrch\lang3081  MyApp \f0\rtlch\lang5121\'c7\'e1\'ca\'ed \'ca\'e3\'cb\'e1 \'c7\'e1\'ca\'d8\'c8\'ed\'de \'e4\'dd\'d3\'e5\f1\ltrch\lang3081\par
+class MyApp extends StatelessWidget \{\par
+  @override\par
+  Widget build(BuildContext context) \{\par
+    return MaterialApp(\par
+      title: 'ToDo List',  // \f0\rtlch\lang5121\'da\'e4\'e6\'c7\'e4 \'c7\'e1\'ca\'d8\'c8\'ed\'de\f1\ltrch\lang3081\par
+      home: TodoScreen(), // \f0\rtlch\lang5121\'c7\'e1\'d4\'c7\'d4\'c9 \'c7\'e1\'d1\'c6\'ed\'d3\'ed\'c9 \'e1\'e1\'ca\'d8\'c8\'ed\'de\'a1 \'e5\'e4\'c7 \'e5\'ed\f1\ltrch\lang3081  TodoScreen\par
+    );\par
+  \}\par
+\}\par
+
+\pard\ltrpar\sa200\sl276\slmult1\qc\f0\rtlch\lang5121\'d4\'d1\'cd\f1\ltrch\lang3081  main.dart:\par
+
+\pard\rtlpar\sa200\sl276\slmult1\qr WidgetsFlutterBinding.ensureInitialized(): \f0\rtlch\lang5121\'e5\'d0\'e5 \'c7\'e1\'cf\'c7\'e1\'c9 \'ca\'ca\'c3\'df\'cf \'e3\'e4 \'c3\'e4 \'df\'e1 \'d4\'ed\'c1 \'dd\'ed \'c8\'ed\'c6\'c9\f1\ltrch\lang3081  Flutter \f0\rtlch\lang5121\'cc\'c7\'e5\'d2 \'de\'c8\'e1 \'ca\'e4\'dd\'ed\'d0 \'c3\'ed \'df\'e6\'cf. \'ed\'ca\'e3 \'c7\'d3\'ca\'ce\'cf\'c7\'e3\'e5\'c7 \'e5\'e4\'c7 \'de\'c8\'e1 \'ca\'e5\'ed\'c6\'c9\f1\ltrch\lang3081  Firebase.\par
+\par
+await Firebase.initializeApp(): \f0\rtlch\lang5121\'e5\'d0\'e5 \'c7\'e1\'d3\'d8\'d1 \'ed\'e5\'ed\'c6\f1\ltrch\lang3081  Firebase \f0\rtlch\lang5121\'de\'c8\'e1 \'c7\'d3\'ca\'ce\'cf\'c7\'e3 \'c3\'ed \'e6\'d9\'c7\'c6\'dd \'e3\'e4\f1\ltrch\lang3081  Firebase \f0\rtlch\lang5121\'dd\'ed \'c7\'e1\'ca\'d8\'c8\'ed\'de. \'ed\'ca\'e3 \'c7\'d3\'ca\'ce\'cf\'c7\'e3\'e5\'c7 \'c8\'d4\'df\'e1 \'db\'ed\'d1 \'e3\'ca\'d2\'c7\'e3\'e4 \'c8\'c7\'d3\'ca\'ce\'cf\'c7\'e3 \'c7\'e1\'df\'e1\'e3\'c9 \'c7\'e1\'e3\'dd\'ca\'c7\'cd\'ed\'c9\f1\ltrch\lang3081  await \f0\rtlch\lang5121\'e1\'d6\'e3\'c7\'e4 \'c7\'df\'ca\'e3\'c7\'e1 \'c7\'e1\'ca\'e5\'ed\'c6\'c9\f1\ltrch\lang3081 .\par
+\par
+runApp(MyApp()): \f0\rtlch\lang5121\'e5\'d0\'e5 \'c7\'e1\'cf\'c7\'e1\'c9 \'ca\'c8\'cf\'c3 \'c7\'e1\'ca\'d8\'c8\'ed\'de \'da\'e4 \'d8\'d1\'ed\'de \'c7\'d3\'ca\'cf\'da\'c7\'c1\f1\ltrch\lang3081  MyApp\f0\rtlch\lang5121\'a1 \'e6\'e5\'ed \'c7\'e1\'dd\'c6\'c9 \'c7\'e1\'ca\'ed \'ca\'de\'e6\'e3 \'c8\'c8\'e4\'c7\'c1 \'e6\'c7\'cc\'e5\'c9 \'c7\'e1\'ca\'d8\'c8\'ed\'de\f1\ltrch\lang3081 .\par
+\par
+MaterialApp: \f0\rtlch\lang5121\'e5\'ed \'e6\'c7\'cc\'e5\'c9 \'e3\'d3\'ca\'ce\'cf\'e3 \'dd\'ed\f1\ltrch\lang3081  Flutter \f0\rtlch\lang5121\'c7\'e1\'ca\'ed \'ca\'d3\'ca\'ce\'cf\'e3 \'e3\'c8\'c7\'cf\'c6 "\'ca\'d5\'e3\'ed\'e3 \'c7\'e1\'e3\'e6\'c7\'cf". \'ca\'cf\'ed\'d1 \'da\'e4\'c7\'d5\'d1 \'e3\'cb\'e1 \'d4\'d1\'ed\'d8 \'c7\'e1\'ca\'d8\'c8\'ed\'de \'e6\'c7\'e1\'ca\'e4\'de\'e1. \'c7\'e1\'ce\'c7\'d5\'ed\'c9\f1\ltrch\lang3081  home \f0\rtlch\lang5121\'ca\'cd\'cf\'cf \'c7\'e1\'d4\'c7\'d4\'c9 \'c7\'e1\'ca\'ed \'ed\'d9\'e5\'d1 \'da\'e1\'ed\'e5\'c7 \'c7\'e1\'ca\'d8\'c8\'ed\'de \'da\'e4\'cf \'c8\'cf\'c1 \'c7\'e1\'ca\'d4\'db\'ed\'e1\'a1 \'e6\'e5\'e4\'c7 \'e5\'ed\f1\ltrch\lang3081  TodoScreen.\par
+
+\pard\ltrpar\sa200\sl276\slmult1\par
+2. todo_screen.dart:\par
+dart\par
+Copier le code\par
+// \f0\rtlch\lang5121\'c7\'d3\'ca\'ed\'d1\'c7\'cf \'c7\'e1\'e3\'df\'ca\'c8\'c7\'ca \'c7\'e1\'e1\'c7\'d2\'e3\'c9\f1\ltrch\lang3081\par
+import 'package:flutter/material.dart';\par
+import 'package:cloud_firestore/cloud_firestore.dart'; // \f0\rtlch\lang5121\'e1\'e1\'ca\'dd\'c7\'da\'e1 \'e3\'da\f1\ltrch\lang3081  Firestore\par
+\par
+// \f0\rtlch\lang5121\'dd\'c6\'c9\f1\ltrch\lang3081  TodoScreen \f0\rtlch\lang5121\'e1\'da\'d1\'d6 \'e6\'c5\'cf\'c7\'d1\'c9 \'c7\'e1\'e3\'e5\'c7\'e3\f1\ltrch\lang3081\par
+class TodoScreen extends StatelessWidget \{\par
+  // \f0\rtlch\lang5121\'c7\'e1\'e3\'ca\'cd\'df\'e3 \'dd\'ed \'c7\'e1\'e4\'d5 \'c7\'e1\'e3\'cf\'ce\'e1 \'e1\'e1\'e3\'e5\'c7\'e3\f1\ltrch\lang3081\par
+  final TextEditingController _taskController = TextEditingController();\par
+\par
+  // \f0\rtlch\lang5121\'cf\'c7\'e1\'c9 \'e1\'c5\'d6\'c7\'dd\'c9 \'e3\'e5\'e3\'c9 \'cc\'cf\'ed\'cf\'c9 \'c5\'e1\'ec\f1\ltrch\lang3081  Firestore\par
+  void _addTask(String task) \{\par
+    FirebaseFirestore.instance.collection('tasks').add(\{\par
+      'task': task,  // \f0\rtlch\lang5121\'c5\'d6\'c7\'dd\'c9 \'c7\'e1\'e3\'e5\'e3\'c9\f1\ltrch\lang3081\par
+      'done': false,  // \f0\rtlch\lang5121\'c7\'e1\'e3\'e5\'e3\'c9 \'e1\'ed\'d3\'ca \'e3\'df\'ca\'e3\'e1\'c9 \'c8\'d4\'df\'e1 \'c7\'dd\'ca\'d1\'c7\'d6\'ed\f1\ltrch\lang3081\par
+    \});\par
+    _taskController.clear();  // \f0\rtlch\lang5121\'e3\'d3\'cd \'c7\'e1\'e4\'d5 \'c7\'e1\'e3\'cf\'ce\'e1 \'c8\'da\'cf \'c5\'d6\'c7\'dd\'c9 \'c7\'e1\'e3\'e5\'e3\'c9\f1\ltrch\lang3081\par
+  \}\par
+\par
+  // \f0\rtlch\lang5121\'cf\'c7\'e1\'c9 \'e1\'ca\'c8\'cf\'ed\'e1 \'cd\'c7\'e1\'c9 \'c7\'e1\'e3\'e5\'e3\'c9 (\'e3\'df\'ca\'e3\'e1\'c9 \'c3\'e6 \'db\'ed\'d1 \'e3\'df\'ca\'e3\'e1\'c9)\f1\ltrch\lang3081\par
+  void _toggleTask(String id, bool done) \{\par
+    FirebaseFirestore.instance.collection('tasks').doc(id).update(\{\par
+      'done': !done,  // \f0\rtlch\lang5121\'ca\'c8\'cf\'ed\'e1 \'cd\'c7\'e1\'c9 \'c7\'e1\'e3\'e5\'e3\'c9\f1\ltrch\lang3081\par
+    \});\par
+  \}\par
+\par
+  // \f0\rtlch\lang5121\'cf\'c7\'e1\'c9 \'e1\'cd\'d0\'dd \'e3\'e5\'e3\'c9 \'e3\'e4\f1\ltrch\lang3081  Firestore\par
+  void _deleteTask(String id) \{\par
+    FirebaseFirestore.instance.collection('tasks').doc(id).delete();\par
+  \}\par
+\par
+  @override\par
+  Widget build(BuildContext context) \{\par
+    return Scaffold(\par
+      appBar: AppBar(\par
+        title: Text('To-Do List'),  // \f0\rtlch\lang5121\'da\'e4\'e6\'c7\'e4 \'d4\'d1\'ed\'d8 \'c7\'e1\'ca\'d8\'c8\'ed\'de\f1\ltrch\lang3081\par
+      ),\par
+      body: Column(\par
+        children: [\par
+          // \f0\rtlch\lang5121\'cd\'de\'e1 \'e4\'d5\'ed \'e1\'c5\'d6\'c7\'dd\'c9 \'e3\'e5\'e3\'c9 \'cc\'cf\'ed\'cf\'c9\f1\ltrch\lang3081\par
+          Padding(\par
+            padding: const EdgeInsets.all(\f0\rtlch\lang5121 8.0\f1\ltrch\lang3081 ),\par
+            child: Row(\par
+              children: [\par
+                Expanded(\par
+                  child: TextField(\par
+                    controller: _taskController,\par
+                    decoration: InputDecoration(labelText: 'Add a task'),\par
+                  ),\par
+                ),\par
+                IconButton(\par
+                  icon: Icon(Icons.add),  // \f0\rtlch\lang5121\'c3\'ed\'de\'e6\'e4\'c9 \'c5\'d6\'c7\'dd\'c9 \'c7\'e1\'e3\'e5\'e3\'c9\f1\ltrch\lang3081\par
+                  onPressed: () \{\par
+                    if (_taskController.text.isNotEmpty) \{\par
+                      _addTask(_taskController.text);  // \f0\rtlch\lang5121\'c5\'d6\'c7\'dd\'c9 \'c7\'e1\'e3\'e5\'e3\'c9 \'c5\'d0\'c7 \'df\'c7\'e4 \'c7\'e1\'e4\'d5 \'db\'ed\'d1 \'dd\'c7\'d1\'db\f1\ltrch\lang3081\par
+                    \}\par
+                  \},\par
+                ),\par
+              ],\par
+            ),\par
+          ),\par
+          // \f0\rtlch\lang5121\'da\'d1\'d6 \'de\'c7\'c6\'e3\'c9 \'c7\'e1\'e3\'e5\'c7\'e3 \'c7\'e1\'e3\'c3\'ce\'e6\'d0\'c9 \'e3\'e4\f1\ltrch\lang3081  Firestore \f0\rtlch\lang5121\'c8\'d4\'df\'e1 \'cd\'ed\f1\ltrch\lang3081\par
+          Expanded(\par
+            child: StreamBuilder<QuerySnapshot>(\par
+              stream: FirebaseFirestore.instance.collection('tasks').snapshots(),\par
+              builder: (context, snapshot) \{\par
+                if (!snapshot.hasData) \{\par
+                  return Center(child: CircularProgressIndicator()); // \f0\rtlch\lang5121\'e3\'c4\'d4\'d1 \'ca\'cd\'e3\'ed\'e1\f1\ltrch\lang3081\par
+                \}\par
+\par
+                final tasks = snapshot.data!.docs;  // \f0\rtlch\lang5121\'cc\'e1\'c8 \'c7\'e1\'e3\'e5\'c7\'e3\f1\ltrch\lang3081\par
+\par
+                // \f0\rtlch\lang5121\'da\'d1\'d6 \'de\'c7\'c6\'e3\'c9 \'c7\'e1\'e3\'e5\'c7\'e3\f1\ltrch\lang3081\par
+                return ListView.builder(\par
+                  itemCount: tasks.length,  // \f0\rtlch\lang5121\'da\'cf\'cf \'c7\'e1\'da\'e4\'c7\'d5\'d1 \'dd\'ed \'c7\'e1\'de\'c7\'c6\'e3\'c9\f1\ltrch\lang3081\par
+                  itemBuilder: (context, index) \{\par
+                    final task = tasks[index];\par
+                    return ListTile(\par
+                      title: Text(\par
+                        task['task'],  // \f0\rtlch\lang5121\'e4\'d5 \'c7\'e1\'e3\'e5\'e3\'c9\f1\ltrch\lang3081\par
+                        style: TextStyle(\par
+                          decoration: task['done'] ? TextDecoration.lineThrough : null,  // \f0\rtlch\lang5121\'ce\'d8 \'dd\'e6\'de \'c7\'e1\'e4\'d5 \'c5\'d0\'c7 \'df\'c7\'e4\'ca \'c7\'e1\'e3\'e5\'e3\'c9 \'e3\'df\'ca\'e3\'e1\'c9\f1\ltrch\lang3081\par
+                        ),\par
+                      ),\par
+                      leading: Checkbox(\par
+                        value: task['done'],  // \f0\rtlch\lang5121\'c5\'d9\'e5\'c7\'d1 \'e3\'c7 \'c5\'d0\'c7 \'df\'c7\'e4\'ca \'c7\'e1\'e3\'e5\'e3\'c9 \'e3\'df\'ca\'e3\'e1\'c9\f1\ltrch\lang3081\par
+                        onChanged: (value) \{\par
+                          _toggleTask(task.id, task['done']);  // \f0\rtlch\lang5121\'ca\'c8\'cf\'ed\'e1 \'cd\'c7\'e1\'c9 \'c7\'e1\'e3\'e5\'e3\'c9\f1\ltrch\lang3081\par
+                        \},\par
+                      ),\par
+                      trailing: IconButton(\par
+                        icon: Icon(Icons.delete),  // \f0\rtlch\lang5121\'c3\'ed\'de\'e6\'e4\'c9 \'cd\'d0\'dd \'c7\'e1\'e3\'e5\'e3\'c9\f1\ltrch\lang3081\par
+                        onPressed: () \{\par
+                          _deleteTask(task.id);  // \f0\rtlch\lang5121\'cd\'d0\'dd \'c7\'e1\'e3\'e5\'e3\'c9\f1\ltrch\lang3081\par
+                        \},\par
+                      ),\par
+                    );\par
+                  \},\par
+                );\par
+              \},\par
+            ),\par
+          ),\par
+        ],\par
+      ),\par
+    );\par
+  \}\par
+\}\par
+
+\pard\ltrpar\sa200\sl276\slmult1\qr\f0\rtlch\lang5121\'d4\'d1\'cd\f1\ltrch\lang3081  todo_screen.dart:\par
+TextEditingController _taskController: \f0\rtlch\lang5121\'e5\'e6 \'c7\'e1\'e3\'ca\'cd\'df\'e3 \'dd\'ed \'c7\'e1\'e4\'d5 \'c7\'e1\'e3\'cf\'ce\'e1 \'dd\'ed \'cd\'de\'e1 \'c7\'e1\'e4\'d5\'a1 \'ed\'f5\'d3\'ca\'ce\'cf\'e3 \'e1\'c5\'d6\'c7\'dd\'c9 \'e3\'e5\'e3\'c9 \'cc\'cf\'ed\'cf\'c9\f1\ltrch\lang3081 .\par
+\par
+_addTask: \f0\rtlch\lang5121\'e5\'d0\'e5 \'c7\'e1\'cf\'c7\'e1\'c9 \'ca\'de\'e6\'e3 \'c8\'c5\'d1\'d3\'c7\'e1 \'c7\'e1\'e3\'e5\'e3\'c9 \'c7\'e1\'ca\'ed \'c3\'cf\'ce\'e1\'e5\'c7 \'c7\'e1\'e3\'d3\'ca\'ce\'cf\'e3 \'c5\'e1\'ec\f1\ltrch\lang3081  Firestore \f0\rtlch\lang5121\'da\'e4 \'d8\'d1\'ed\'de \'c5\'d6\'c7\'dd\'ca\'e5\'c7 \'c5\'e1\'ec \'e3\'cc\'e3\'e6\'da\'c9\f1\ltrch\lang3081  tasks.\par
+\par
+_toggleTask: \f0\rtlch\lang5121\'e5\'d0\'e5 \'c7\'e1\'cf\'c7\'e1\'c9 \'ca\'de\'e6\'e3 \'c8\'ca\'cd\'cf\'ed\'cb \'cd\'c7\'e1\'c9 \'c7\'e1\'e3\'e5\'e3\'c9 \'dd\'ed\f1\ltrch\lang3081  Firestore\f0\rtlch\lang5121\'a1 \'cd\'ed\'cb \'ca\'de\'e6\'e3 \'c8\'ca\'c8\'cf\'ed\'e1 \'cd\'c7\'e1\'c9 \'c7\'e1\'e3\'e5\'e3\'c9 \'c8\'ed\'e4 \'e3\'df\'ca\'e3\'e1\'c9 \'e6\'db\'ed\'d1 \'e3\'df\'ca\'e3\'e1\'c9\f1\ltrch\lang3081 .\par
+\par
+_deleteTask: \f0\rtlch\lang5121\'ca\'de\'e6\'e3 \'e5\'d0\'e5 \'c7\'e1\'cf\'c7\'e1\'c9 \'c8\'cd\'d0\'dd \'e3\'e5\'e3\'c9 \'e3\'e4 \'de\'c7\'da\'cf\'c9 \'c8\'ed\'c7\'e4\'c7\'ca\f1\ltrch\lang3081  Firestore.\par
+\par
+StreamBuilder: \f0\rtlch\lang5121\'e5\'ed \'c3\'cf\'c7\'c9 \'dd\'ed\f1\ltrch\lang3081  Flutter \f0\rtlch\lang5121\'ca\'d3\'e3\'cd \'c8\'c7\'e1\'c7\'d3\'ca\'e3\'c7\'da \'e1\'e1\'ca\'db\'ed\'ed\'d1\'c7\'ca \'dd\'ed \'c7\'e1\'c8\'ed\'c7\'e4\'c7\'ca \'e3\'e4\f1\ltrch\lang3081  Firestore \f0\rtlch\lang5121\'dd\'ed \'c7\'e1\'e6\'de\'ca \'c7\'e1\'dd\'da\'e1\'ed. \'df\'e1\'e3\'c7 \'ca\'e3 \'ca\'cd\'cf\'ed\'cb \'e3\'cc\'e3\'e6\'da\'c9\f1\ltrch\lang3081  tasks \f0\rtlch\lang5121\'dd\'ed\f1\ltrch\lang3081  Firestore\f0\rtlch\lang5121\'a1 \'ed\'ca\'e3 \'c5\'da\'c7\'cf\'c9 \'c8\'e4\'c7\'c1 \'e6\'c7\'cc\'e5\'c9 \'c7\'e1\'e3\'d3\'ca\'ce\'cf\'e3 \'e1\'ca\'cd\'cf\'ed\'cb \'c7\'e1\'e3\'e5\'c7\'e3 \'c7\'e1\'e3\'da\'d1\'e6\'d6\'c9\f1\ltrch\lang3081 .\par
+\par
+ListView.builder: \f0\rtlch\lang5121\'e5\'ed \'c3\'cf\'c7\'c9 \'e1\'c5\'e4\'d4\'c7\'c1 \'de\'c7\'c6\'e3\'c9 \'e3\'e4 \'c7\'e1\'e3\'e5\'c7\'e3 \'c8\'e4\'c7\'c1\'f0 \'da\'e1\'ec \'c7\'e1\'c8\'ed\'c7\'e4\'c7\'ca \'c7\'e1\'ca\'ed \'ca\'e3 \'cc\'e1\'c8\'e5\'c7 \'e3\'e4\f1\ltrch\lang3081  Firestore. \f0\rtlch\lang5121\'df\'e1 \'da\'e4\'d5\'d1 \'dd\'ed \'c7\'e1\'de\'c7\'c6\'e3\'c9 \'e5\'e6\f1\ltrch\lang3081  ListTile \f0\rtlch\lang5121\'ed\'da\'d1\'d6 \'e4\'d5 \'c7\'e1\'e3\'e5\'e3\'c9\'a1 \'e6\f1\ltrch\lang3081 Checkbox \f0\rtlch\lang5121\'e1\'ca\'cd\'cf\'ed\'cf \'e3\'c7 \'c5\'d0\'c7 \'df\'c7\'e4\'ca \'c7\'e1\'e3\'e5\'e3\'c9 \'e3\'df\'ca\'e3\'e1\'c9 \'c3\'e3 \'e1\'c7\'a1 \'e6\'c3\'ed\'de\'e6\'e4\'c9 \'cd\'d0\'dd \'c7\'e1\'e3\'e5\'e3\'c9\f1\ltrch\lang3081 .\par
+\par
+\f0\rtlch\lang5121\'e3\'e1\'ce\'d5\f1\ltrch\lang3081 :\par
+main.dart \f0\rtlch\lang5121\'ed\'de\'e6\'e3 \'c8\'ca\'e5\'ed\'c6\'c9\f1\ltrch\lang3081  Firebase \f0\rtlch\lang5121\'e6\'c8\'cf\'c1 \'c7\'e1\'ca\'d8\'c8\'ed\'de\f1\ltrch\lang3081 .\par
+todo_screen.dart \f0\rtlch\lang5121\'ed\'de\'e6\'e3 \'c8\'da\'d1\'d6 \'c7\'e1\'e3\'e5\'c7\'e3\'a1 \'c5\'d6\'c7\'dd\'c9 \'c7\'e1\'e3\'e5\'c7\'e3\'a1 \'cd\'d0\'dd \'c7\'e1\'e3\'e5\'c7\'e3\'a1 \'e6\'ca\'cd\'cf\'ed\'cb \'cd\'c7\'e1\'c9 \'c7\'e1\'e3\'e5\'c7\'e3 \'c8\'d4\'df\'e1 \'cd\'ed \'c8\'c7\'d3\'ca\'ce\'cf\'c7\'e3\f1\ltrch\lang3081  Firestore.\lang9\par
+}
+ 

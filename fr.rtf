@@ -1,0 +1,170 @@
+{\rtf1\ansi\ansicpg1252\deff0\nouicompat\deflang1036{\fonttbl{\f0\fnil\fcharset0 Calibri;}}
+{\*\generator Riched20 10.0.22000}\viewkind4\uc1 
+\pard\sa200\sl276\slmult1\f0\fs22\lang9 Voici les deux fichiers Dart (main.dart et todo_screen.dart) avec des commentaires en fran\'e7ais pour expliquer chaque section :\par
+\par
+1. main.dart :\par
+dart\par
+Copier le code\par
+// Importation des biblioth\'e8ques n\'e9cessaires\par
+import 'package:flutter/material.dart'; // Pour l'interface utilisateur\par
+import 'package:firebase_core/firebase_core.dart'; // Pour initialiser Firebase\par
+import 'screens/todo_screen.dart'; // Importation de l'\'e9cran de gestion des t\'e2ches (TodoScreen)\par
+\par
+// Fonction principale qui d\'e9marre l'application\par
+void main() async \{\par
+  // Assurez-vous que l'initialisation de Flutter est termin\'e9e avant d'ex\'e9cuter quoi que ce soit\par
+  WidgetsFlutterBinding.ensureInitialized();\par
+\par
+  // Initialisation de Firebase\par
+  await Firebase.initializeApp();\par
+\par
+  // D\'e9marrage de l'application apr\'e8s l'initialisation de Firebase\par
+  runApp(MyApp());\par
+\}\par
+\par
+// Classe MyApp qui repr\'e9sente l'application\par
+class MyApp extends StatelessWidget \{\par
+  @override\par
+  Widget build(BuildContext context) \{\par
+    return MaterialApp(\par
+      title: 'ToDo List',  // Titre de l'application\par
+      home: TodoScreen(), // D\'e9finition de l'\'e9cran d'accueil, ici l'\'e9cran des t\'e2ches (TodoScreen)\par
+    );\par
+  \}\par
+\}\par
+Explication du fichier main.dart :\par
+WidgetsFlutterBinding.ensureInitialized() : Cette fonction assure que tout est pr\'eat dans l'environnement Flutter avant d'ex\'e9cuter le code. Elle est utilis\'e9e ici avant d'initialiser Firebase.\par
+\par
+await Firebase.initializeApp() : Cette ligne permet d'initialiser Firebase avant d'utiliser toute fonctionnalit\'e9 de Firebase dans l'application. Elle est utilis\'e9e de mani\'e8re asynchrone avec le mot-cl\'e9 await pour attendre que l'initialisation soit termin\'e9e.\par
+\par
+runApp(MyApp()) : Cette fonction d\'e9marre l'application en appelant MyApp, qui est la classe qui construit l'interface de l'application.\par
+\par
+MaterialApp : Un widget Flutter qui permet de d\'e9finir l'interface de l'application en utilisant les principes de "Material Design". Il prend en charge des \'e9l\'e9ments comme la barre d'applications et la navigation. L'argument home indique l'\'e9cran de base de l'application, ici TodoScreen.\par
+\par
+2. todo_screen.dart :\par
+dart\par
+Copier le code\par
+// Importation des biblioth\'e8ques n\'e9cessaires\par
+import 'package:flutter/material.dart';\par
+import 'package:cloud_firestore/cloud_firestore.dart'; // Pour interagir avec Firestore\par
+\par
+// Classe TodoScreen pour afficher et g\'e9rer les t\'e2ches\par
+class TodoScreen extends StatelessWidget \{\par
+  // Contr\'f4leur pour g\'e9rer l'entr\'e9e du texte de la t\'e2che\par
+  final TextEditingController _taskController = TextEditingController();\par
+\par
+  // Fonction pour ajouter une nouvelle t\'e2che dans Firestore\par
+  void _addTask(String task) \{\par
+    FirebaseFirestore.instance.collection('tasks').add(\{\par
+      'task': task,  // Ajout de la t\'e2che\par
+      'done': false,  // Par d\'e9faut, la t\'e2che n'est pas termin\'e9e\par
+    \});\par
+    _taskController.clear();  // R\'e9initialise le champ de texte apr\'e8s l'ajout\par
+  \}\par
+\par
+  // Fonction pour changer l'\'e9tat de la t\'e2che (termin\'e9e ou non)\par
+  void _toggleTask(String id, bool done) \{\par
+    FirebaseFirestore.instance.collection('tasks').doc(id).update(\{\par
+      'done': !done,  // Inverse l'\'e9tat de la t\'e2che\par
+    \});\par
+  \}\par
+\par
+  // Fonction pour supprimer une t\'e2che de Firestore\par
+  void _deleteTask(String id) \{\par
+    FirebaseFirestore.instance.collection('tasks').doc(id).delete();\par
+  \}\par
+\par
+  @override\par
+  Widget build(BuildContext context) \{\par
+    return Scaffold(\par
+      appBar: AppBar(\par
+        title: Text('Liste des T\'e2ches'),  // Titre de l'application\par
+      ),\par
+      body: Column(\par
+        children: [\par
+          // Champ de texte pour ajouter une t\'e2che\par
+          Padding(\par
+            padding: const EdgeInsets.all(8.0),\par
+            child: Row(\par
+              children: [\par
+                Expanded(\par
+                  child: TextField(\par
+                    controller: _taskController,\par
+                    decoration: InputDecoration(labelText: 'Ajouter une t\'e2che'),\par
+                  ),\par
+                ),\par
+                IconButton(\par
+                  icon: Icon(Icons.add),  // Ic\'f4ne d'ajout de t\'e2che\par
+                  onPressed: () \{\par
+                    if (_taskController.text.isNotEmpty) \{\par
+                      _addTask(_taskController.text);  // Ajoute la t\'e2che\par
+                    \}\par
+                  \},\par
+                ),\par
+              ],\par
+            ),\par
+          ),\par
+          // Liste des t\'e2ches r\'e9cup\'e9r\'e9es en temps r\'e9el de Firestore\par
+          Expanded(\par
+            child: StreamBuilder<QuerySnapshot>(\par
+              stream: FirebaseFirestore.instance.collection('tasks').snapshots(),\par
+              builder: (context, snapshot) \{\par
+                if (!snapshot.hasData) \{\par
+                  return Center(child: CircularProgressIndicator()); // Chargement des donn\'e9es\par
+                \}\par
+\par
+                final tasks = snapshot.data!.docs;  // R\'e9cup\'e8re les t\'e2ches\par
+\par
+                // Affichage de la liste des t\'e2ches\par
+                return ListView.builder(\par
+                  itemCount: tasks.length,  // Nombre d'\'e9l\'e9ments dans la liste\par
+                  itemBuilder: (context, index) \{\par
+                    final task = tasks[index];\par
+                    return ListTile(\par
+                      title: Text(\par
+                        task['task'],  // Texte de la t\'e2che\par
+                        style: TextStyle(\par
+                          decoration: task['done'] ? TextDecoration.lineThrough : null,  // Barrer la t\'e2che si termin\'e9e\par
+                        ),\par
+                      ),\par
+                      leading: Checkbox(\par
+                        value: task['done'],  // Affiche si la t\'e2che est termin\'e9e\par
+                        onChanged: (value) \{\par
+                          _toggleTask(task.id, task['done']);  // Inverse l'\'e9tat de la t\'e2che\par
+                        \},\par
+                      ),\par
+                      trailing: IconButton(\par
+                        icon: Icon(Icons.delete),  // Ic\'f4ne de suppression de la t\'e2che\par
+                        onPressed: () \{\par
+                          _deleteTask(task.id);  // Supprime la t\'e2che\par
+                        \},\par
+                      ),\par
+                    );\par
+                  \},\par
+                );\par
+              \},\par
+            ),\par
+          ),\par
+        ],\par
+      ),\par
+    );\par
+  \}\par
+\}\par
+Explication du fichier todo_screen.dart :\par
+TextEditingController _taskController : Il s'agit d'un contr\'f4leur qui g\'e8re l'entr\'e9e de texte dans le champ de saisie, utilis\'e9 pour ajouter une nouvelle t\'e2che.\par
+\par
+_addTask : Cette fonction envoie la t\'e2che saisie par l'utilisateur \'e0 Firestore en l'ajoutant \'e0 la collection tasks.\par
+\par
+_toggleTask : Cette fonction met \'e0 jour l'\'e9tat de la t\'e2che dans Firestore. Si la t\'e2che est marqu\'e9e comme termin\'e9e, elle est invers\'e9e (non termin\'e9e) et vice versa.\par
+\par
+_deleteTask : Supprime une t\'e2che de la base de donn\'e9es Firestore.\par
+\par
+StreamBuilder : Ce widget Flutter \'e9coute les changements en temps r\'e9el de la collection tasks de Firestore. Lorsque la collection change, le widget se met \'e0 jour automatiquement pour afficher les nouvelles t\'e2ches.\par
+\par
+ListView.builder : Ce widget cr\'e9e une liste de t\'e2ches en fonction des donn\'e9es obtenues de Firestore. Chaque \'e9l\'e9ment de la liste est un ListTile qui affiche le texte de la t\'e2che, une case \'e0 cocher (pour marquer la t\'e2che comme termin\'e9e ou non), et une ic\'f4ne de suppression.\par
+\par
+R\'e9sum\'e9 :\par
+Le fichier main.dart initialise Firebase et lance l'application Flutter.\par
+Le fichier todo_screen.dart g\'e8re l'affichage des t\'e2ches, leur ajout, leur suppression, et leur mise \'e0 jour en temps r\'e9el \'e0 l'aide de Firestore.\par
+}
+ 
