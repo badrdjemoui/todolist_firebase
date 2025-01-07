@@ -32,9 +32,14 @@ MyApp هو كلاس لا يحتوي على حالة متغيرة، لذلك نس
 الكود يبدأ التطبيق عن طريق تهيئة Firebase ثم يعرض شاشة تحتوي على قائمة مهام، وتستخدم واجهة Flutter لعرض المهام التي يتم إدخالها وتخزينها في Firebase Firestore.
 
 
+
 Empreinte SHA-1 du certificat de signature de débogage (facultatif)
 
 لاستخراج  SHA-1
+
+
 open terminal:
+
+
 E:\flutter\examples\myfproject\chickenjson\cd android
 PS E:\flutter\examples\myfproject\chickenjson\android> ./gradlew signingReport
