@@ -42,4 +42,6 @@ open terminal:
 
 
 E:\flutter\examples\myfproject\chickenjson\cd android
+
+
 PS E:\flutter\examples\myfproject\chickenjson\android> ./gradlew signingReport
