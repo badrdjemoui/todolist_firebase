@@ -30,3 +30,11 @@ MyApp هو كلاس لا يحتوي على حالة متغيرة، لذلك نس
 لأن Firebase يحتاج إلى تهيئة قبل استخدامه في التطبيق. وعادة ما تتم هذه التهيئة في بداية التطبيق لضمان أن جميع الخدمات مثل Firebase Firestore و Firebase Auth جاهزة للاستخدام بمجرد أن يبدأ التطبيق في العمل.
 خلاصة:
 الكود يبدأ التطبيق عن طريق تهيئة Firebase ثم يعرض شاشة تحتوي على قائمة مهام، وتستخدم واجهة Flutter لعرض المهام التي يتم إدخالها وتخزينها في Firebase Firestore.
+
+
+Empreinte SHA-1 du certificat de signature de débogage (facultatif)
+
+لاستخراج  SHA-1
+open terminal:
+E:\flutter\examples\myfproject\chickenjson\cd android
+PS E:\flutter\examples\myfproject\chickenjson\android> ./gradlew signingReport
